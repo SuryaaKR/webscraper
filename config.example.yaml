@@ -1,0 +1,58 @@
+# Example config for directory sites
+start_urls:
+  - "https://example.com/directory"
+
+# mode: infinite_scroll or pagination
+mode: "infinite_scroll"
+
+# Optional: run browser with UI
+headful: false
+
+# Scroll behavior for infinite scroll pages
+scroll:
+  max_scrolls: 60
+  pause_ms: 1200
+  stop_after_unchanged: 3
+
+# Pagination behavior
+pagination:
+  next_button_selector: "button.next, a.next"
+  max_pages: 50
+  pause_ms: 1500
+  # Optional: build pages by URL instead of clicking next
+  # url_template: "https://example.com/directory?page={page}&pagesize=30"
+  # start_page: 1
+
+# Extraction rules
+extraction:
+  item_selector: ".listing-card"
+  fields:
+    company_name:
+      selector: ".company-name"
+    address:
+      selector: ".address"
+    email:
+      selector: "a[href^='mailto:']"
+      attr: "href"
+    website:
+      selector: "a.website"
+      attr: "href"
+    phone:
+      selector: ".phone"
+    country:
+      selector: ".country"
+    field:
+      selector: ".industry"
+
+# Output file
+output_file: "output/lead_directory.xlsx"
+
+# Override columns ordering if needed
+columns:
+  - company_name
+  - address
+  - email
+  - website
+  - phone
+  - country
+  - field
